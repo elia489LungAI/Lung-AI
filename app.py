@@ -6,7 +6,7 @@ if "GOOGLE_API_KEY" in st.secrets:
     genai.configure(api_key=["AQ.Ab8RN6LzyCUukA9Mo5ImvQ0xXEHDhSqfL2MCDwpJ52wghlG09w"])
     model = genai.GenerativeModel('gemini-pro')
     
-    st.title("🌍 Global AI Assistant")
+    st.title("Lung AI")
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
