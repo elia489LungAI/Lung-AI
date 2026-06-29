@@ -1,43 +1,29 @@
 import streamlit as st
 
-# 1. Page Configuration
-st.set_page_config(
-    page_title="Lung AI Diagnostics",
-    page_icon="🫁",
-    layout="centered"
-)
+# Page title
+st.title("My Personal AI Assistant")
 
-# 2. Styling the interface
-st.markdown("""
-    <style>
-    .main {
-        background-color: #0e1117;
-    }
-    .stApp {
-        color: white;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-# 3. Title and Header
-st.title("🫁 Lung AI")
-st.subheader("Intelligent X-ray Analysis")
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
-# 4. Upload interface
-uploaded_file = st.file_uploader("Upload your X-ray image here...", type=["jpg", "jpeg", "png"])
+# React to user input
+if prompt := st.chat_input("Hello! Ask me anything..."):
+    # Display user message in chat message container
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    # Add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
-if uploaded_file is not None:
-    # Display the uploaded image
-    st.image(uploaded_file, caption='Uploaded X-ray', use_column_width=True)
-    st.write("Processing...")
+    # Display assistant response in chat message container
+    with st.chat_message("assistant"):
+        response = f"Hello! You said: '{prompt}'. I am currently learning to provide better answers!"
+        st.markdown(response)
     
-    # Placeholder for AI logic
-    if st.button("Start Analysis"):
-        st.success("Model is ready for processing!")
-        # Add your AI model inference code here
-else:
-    st.info("Please upload an image to start the diagnosis.")
-
-# 5. Sidebar footer
-st.sidebar.markdown("---")
-st.sidebar.write("Powered by Lung AI Team")
+    # Add assistant response to chat history
+    st.session_state.messages.append({"role": "assistant", "content": response})
