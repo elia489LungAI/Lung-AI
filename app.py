@@ -1,30 +1,32 @@
 import streamlit as st
 import google.generativeai as genai
 
-# 1. Setup API (Replace YOUR_API_KEY_HERE with your real key)
-genai.configure(api_key="AQ.Ab8RN6JKCnQBUX8jKwpCzS2668-Ri-s1nm_bkU9z6mMfyEl-ow")
-model = genai.GenerativeModel('gemini-pro')
+genai.configure(api_key=AQ.Ab8RN6LzyCUukA9Mo5ImvQ0xXEHDhSqfL2MCDwpJ52wghlG09w["GOOGLE_API_KEY"])
 
-st.title("🌍 Global AI Assistant")
+model = genai.GenerativeModel("gemini-1.5-flash")
 
-# 2. Initialize chat history
+st.title("Lung AI")
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# 3. Display history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# 4. Chat logic
-if prompt := st.chat_input("Write to me in any language..."):
+if prompt := st.chat_input("اسال Lung Ai"):
     with st.chat_message("user"):
         st.markdown(prompt)
+
     st.session_state.messages.append({"role": "user", "content": prompt})
 
     with st.chat_message("assistant"):
-        # This is where the AI responds with real intelligence
-        response = model.generate_content(prompt)
-        st.markdown(response.text)
-    
-    st.session_state.messages.append({"role": "assistant", "content": response.text})
+        try:
+            response = model.generate_content(prompt)
+            answer = response.text
+        except Exception as e:
+            answer = "صار خطأ بالاتصال. تأكدي من API Key واسم الموديل داخل Streamlit Secrets."
+
+        st.markdown(answer)
+
+    st.session_state.messages.append({"role": "assistant", "content": answer})
