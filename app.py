@@ -1,27 +1,30 @@
 import streamlit as st
+import google.generativeai as genai
+
+# 1. Setup API (Replace YOUR_API_KEY_HERE with your real key)
+genai.configure(api_key="AQ.Ab8RN6LtMOldqP5sA2-tCYRZjztXNaopnSLq43LstaFKGGZxDg")
+model = genai.GenerativeModel('gemini-pro')
 
 st.title("🌍 Global AI Assistant")
 
-# Initialize chat history
+# 2. Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Display chat history
+# 3. Display history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# User input
-if prompt := st.chat_input("Lung-AI اسال"):
-    # Display user message
+# 4. Chat logic
+if prompt := st.chat_input("Write to me in any language..."):
     with st.chat_message("user"):
         st.markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    # Intelligent response logic
     with st.chat_message("assistant"):
-        # هنا المساعد يرد حسب اللغة التي استخدمتها
-        response = f"I understand you! You said: '{prompt}'. I am now able to process multiple languages."
-        st.markdown(response)
+        # This is where the AI responds with real intelligence
+        response = model.generate_content(prompt)
+        st.markdown(response.text)
     
-    st.session_state.messages.append({"role": "assistant", "content": response})
+    st.session_state.messages.append({"role": "assistant", "content": response.text})
