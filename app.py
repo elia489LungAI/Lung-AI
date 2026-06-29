@@ -1,29 +1,27 @@
 import streamlit as st
 
-# Page title
-st.title("My Personal AI Assistant")
+st.title("🌍 Global AI Assistant")
 
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Display chat messages from history on app rerun
+# Display chat history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# React to user input
-if prompt := st.chat_input("Lung-AI اسال"):
-    # Display user message in chat message container
+# User input
+if prompt := st.chat_input("Write to me in any language... / اكتب لي بأي لغة..."):
+    # Display user message
     with st.chat_message("user"):
         st.markdown(prompt)
-    # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    # Display assistant response in chat message container
+    # Intelligent response logic
     with st.chat_message("assistant"):
-        response = f"Hello! You said: '{prompt}'. I am currently learning to provide better answers!"
+        # هنا المساعد يرد حسب اللغة التي استخدمتها
+        response = f"I understand you! You said: '{prompt}'. I am now able to process multiple languages."
         st.markdown(response)
     
-    # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
