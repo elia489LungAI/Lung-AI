@@ -5,7 +5,7 @@ st.set_page_config(page_title="Lung AI", page_icon="🤖")
 
 genai.configure(api_key=["AQ.Ab8RN6LzyCUukA9Mo5ImvQ0xXEHDhSqfL2MCDwpJ52wghlG09w"])
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-1.5-flash-8b")
 
 st.title("🤖 Lung AI")
 
@@ -41,7 +41,7 @@ if prompt := st.chat_input("Write to me in any language..."):
 
     conversation = system_prompt + "\n\n"
 
-    for msg in st.session_state.messages[-10:]:
+    for msg in st.session_state.messages[-4:]:
         conversation += f"{msg['role']}: {msg['content']}\n"
 
     conversation += "assistant:"
