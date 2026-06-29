@@ -12,7 +12,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # User input
-if prompt := st.chat_input("Write to me in any language... / اكتب لي بأي لغة..."):
+if prompt := st.chat_input("Lung-AI اسال"):
     # Display user message
     with st.chat_message("user"):
         st.markdown(prompt)
