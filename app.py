@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 # قراءة المفتاح من الـ Secrets
 if "GOOGLE_API_KEY" in st.secrets:
-    genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
+    genai.configure(api_key=st.secrets["AQ.Ab8RN6LtMOldqP5sA2-tCYRZjztXNaopnSLq43LstaFKGGZxDg"])
     model = genai.GenerativeModel('gemini-pro')
     
     st.title("🌍 Global AI Assistant")
