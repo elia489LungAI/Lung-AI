@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 
 # 1. Setup API (Replace YOUR_API_KEY_HERE with your real key)
-genai.configure(API_Key="AQ.Ab8RN6LtMOldqP5sA2-tCYRZjztXNaopnSLq43LstaFKGGZxDg")
+genai.configure(api_key="AQ.Ab8RN6LtMOldqP5sA2-tCYRZjztXNaopnSLq43LstaFKGGZxDg")
 model = genai.GenerativeModel('gemini-pro')
 
 st.title("🌍 Global AI Assistant")
