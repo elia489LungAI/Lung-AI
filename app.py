@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 # قراءة المفتاح من الـ Secrets
 if "GOOGLE_API_KEY" in st.secrets:
-    genai.configure(api_key=["AQ.Ab8RN6LzyCUukA9Mo5ImvQ0xXEHDhSqfL2MCDwpJ52wghlG09w"])
+    genai.configure(api_key=AQ.Ab8RN6LzyCUukA9Mo5ImvQ0xXEHDhSqfL2MCDwpJ52wghlG09w["AQ.Ab8RN6LzyCUukA9Mo5ImvQ0xXEHDhSqfL2MCDwpJ52wghlG09w"])
     model = genai.GenerativeModel('gemini-pro')
     
     st.title("Lung AI")
