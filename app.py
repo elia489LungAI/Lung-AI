@@ -2,8 +2,8 @@ import streamlit as st
 import google.generativeai as genai
 
 # قراءة المفتاح من الـ Secrets
-if "Lung Ai API Key" in st.secrets:
-    genai.configure(api_key=st.secrets["Lung Ai API Key"])
+if "GOOGLE_API_KEY" in st.secrets:
+    genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
     model = genai.GenerativeModel('gemini-pro')
     
     st.title("🌍 Global AI Assistant")
