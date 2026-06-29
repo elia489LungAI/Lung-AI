@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 st.set_page_config(page_title="Lung AI", page_icon="🤖")
 
-genai.configure(api_key=st.secrets["AQ.Ab8RN6LzyCUukA9Mo5ImvQ0xXEHDhSqfL2MCDwpJ52wghlG09w"])
+genai.configure(api_key=["AQ.Ab8RN6LzyCUukA9Mo5ImvQ0xXEHDhSqfL2MCDwpJ52wghlG09w"])
 
 model = genai.GenerativeModel("flash-lite 3.1")
 
