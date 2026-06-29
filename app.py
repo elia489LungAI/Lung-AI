@@ -22,7 +22,30 @@ if prompt := st.chat_input("اسال Lung Ai"):
 
     with st.chat_message("assistant"):
         try:
-            response = model.generate_content(prompt)
+            system_prompt = """
+You are Lung AI, a highly intelligent AI assistant.
+
+Your behavior:
+- Answer naturally like ChatGPT.
+- Think carefully before responding.
+- Never repeat yourself unnecessarily.
+- Give detailed, accurate, and helpful answers.
+- Keep the conversation context.
+- Answer in the same language as the user.
+- Be friendly and professional.
+- If asked to write code, always provide complete working code.
+- If you don't know something, say so honestly instead of guessing.
+"""
+
+conversation = system_prompt + "\n\n"
+
+for msg in st.session_state.messages[-10:]:
+    conversation += f"{msg['role']}: {msg['content']}\n"
+
+conversation += f"user: {prompt}\nassistant:"
+
+response = model.generate_content(conversation)
+answer = response.text
             answer = response.text
         except Exception as e:
             answer = "صار خطأ بالاتصال. تأكدي من API Key واسم الموديل داخل Streamlit Secrets."
